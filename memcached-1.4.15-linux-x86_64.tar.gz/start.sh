@@ -14,7 +14,7 @@ fi
 args=`cat ./m.conf | grep -v '^#' | tr '\n' ' '`
 echo load config file... args are $args
 echo -n 'starting memcached... '
-bin/memcached -v -d -P /tmp/m.pid $args 2>> ./m.log
+numactl --interleave=all bin/memcached -v -d -P /tmp/m.pid $args 2>> ./m.log
 sleep 2
 pid=`cat /tmp/m.pid`
 echo '['$pid']'
