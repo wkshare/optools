@@ -5,7 +5,7 @@
 INSTALL_DIR='/root/opt'
 TOOLS_DIR='/opt/deploy/bin'
 
-DEPLOY_GIT='git@github.com:wkshare/deploy.git'
+DEPLOY_GIT='git@github.com:qbox/deploy.git'
 OPTOOLS_GIT='git@github.com:qbox/optools.git'
  
 function configure_env() {
