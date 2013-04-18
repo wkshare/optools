@@ -75,7 +75,7 @@ function create_stepping_stone() {
     mkdir -p $TOOLS_DIR
     chmod a+rx /opt/deploy
     chmod a+rx /opt/deploy/bin
-    for pname in "deploy" "login" "do" "view" "history" "doc" "ssh"
+    for pname in "deploy" "do" "view" "history" "doc" "ssh"
     do
         sed "s/PROGRAM_PATH/\/root\/opt\/stepping_stone\/bin\/_$pname/g" $INSTALL_DIR/stepping_stone/share/scripts/c_shell.c > /tmp/t.c
         gcc /tmp/t.c -o /tmp/q$pname
