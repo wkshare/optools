@@ -130,15 +130,17 @@ function clean_stepping_stone() {
 function main() {
     action=$1
     if [[ $action == 'install' ]]; then
-        echo 'clean stepping stone'
+        clean_stepping_stone
         configure_env
         install_puppet
         create_stepping_stone
     elif [[ $action == 'update' ]]; then
         update_stepping_stone
-    else
+    elif [[ $action == 'clean' ]]; then
         clean_stepping_stone
+    else
+        echo "Usage: command <install|update|clean>"
     fi
 }
  
-main
+main $@
