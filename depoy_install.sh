@@ -11,7 +11,7 @@ OPTOOLS_GIT='git@github.com:qbox/optools.git'
 function configure_env() {
     echo 'configure_env'
     sed -i 's/^UMASK.*/UMASK 027/g' '/etc/login.defs'
-    useradd -s /bin/bash -m /home/qboxserver qboxserver
+    useradd -s /bin/bash -m qboxserver
     chmod a+rx /home/qboxserver
     useradd -s /bin/jenkins_deploy.sh -m build
     mkdir -p "/home/build/{builds, packages}"
@@ -34,8 +34,6 @@ function install_puppet() {
 }
  
 function create_stepping_stone() {
-    echo 'del old dir ----'
-    rm -rf $INSTALL_DIR
     echo 'create new dir ----'
     mkdir -p $INSTALL_DIR/stepping_stone/{bin,etc,logs,share,docs}
     mkdir -p $INSTALL_DIR/stepping_stone/etc/{conf,keys}
@@ -120,16 +118,26 @@ function update_stepping_stone() {
     chmod u+s $TOOLS_DIR/q*
 }
 
+function clean_stepping_stone() {
+    echo 'clean stepping stone'
+    rm -rf $INSTALL_DIR
+    rm -rf $TOOLS_DIR
+    echo 'restore env configure'
+    sed -i 's/^UMASK.*/UMASK 022/g' '/etc/login.defs'
+    userdel -r build
+}
+
 function main() {
     action=$1
     if [[ $action == 'install' ]]; then
+        echo 'clean stepping stone'
         configure_env
         install_puppet
         create_stepping_stone
     elif [[ $action == 'update' ]]; then
         update_stepping_stone
     else
-        ; #TODO
+        clean_stepping_stone
     fi
 }
  
