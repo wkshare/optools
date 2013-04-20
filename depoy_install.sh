@@ -11,7 +11,8 @@ OPTOOLS_GIT='git@github.com:qbox/optools.git'
 function configure_env() {
     echo 'configure_env'
     sed -i 's/^UMASK.*/UMASK 027/g' '/etc/login.defs'
-    useradd -s /bin/bash -m qboxserver
+    useradd -s /bin/bash -m /home/qboxserver qboxserver
+    chmod a+rx /home/qboxserver
     useradd -s /bin/jenkins_deploy.sh -m build
     mkdir -p "/home/build/{builds, packages}"
     chown build.build -R /home/build/
@@ -36,7 +37,7 @@ function create_stepping_stone() {
     echo 'del old dir ----'
     rm -rf $INSTALL_DIR
     echo 'create new dir ----'
-    mkdir -p $INSTALL_DIR/stepping_stone/{bin,etc,logs,share,docs,deploy_report}
+    mkdir -p $INSTALL_DIR/stepping_stone/{bin,etc,logs,share,docs}
     mkdir -p $INSTALL_DIR/stepping_stone/etc/{conf,keys}
     mkdir -p $INSTALL_DIR/stepping_stone/share/deploy_package/
  
@@ -72,7 +73,9 @@ function create_stepping_stone() {
 
     echo 'install qiniu command (qlogin, qdo, qview, qhistory, qdoc ...) ----'
     mkdir -p $TOOLS_DIR
-    for pname in "deploy" "login" "do" "view" "history" "doc" "ssh"
+    chmod a+rx /opt/deploy
+    chmod a+rx /opt/deploy/bin
+    for pname in "deploy" "do" "view" "history" "doc" "ssh"
     do
         sed "s/PROGRAM_PATH/\/root\/opt\/stepping_stone\/bin\/_$pname/g" $INSTALL_DIR/stepping_stone/share/scripts/c_shell.c > /tmp/t.c
         gcc /tmp/t.c -o /tmp/q$pname
