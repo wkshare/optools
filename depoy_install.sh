@@ -34,6 +34,8 @@ function install_puppet() {
 }
  
 function create_stepping_stone() {
+    echo 'backup old dir ----'
+    mv $INSTALL_DIR $INSTALL_DIR`date %Y%m%d%H%M%S`
     echo 'create new dir ----'
     mkdir -p $INSTALL_DIR/stepping_stone/{bin,etc,logs,share,docs}
     mkdir -p $INSTALL_DIR/stepping_stone/etc/{conf,keys}
