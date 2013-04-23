@@ -11,7 +11,7 @@ OPTOOLS_GIT='git@github.com:qbox/optools.git'
 function configure_env() {
     echo 'configure_env'
     sed -i 's/^UMASK.*/UMASK 027/g' '/etc/login.defs'
-    useradd -s /bin/bash -m /home/qboxserver qboxserver
+    useradd -s /bin/bash -m qboxserver
     chmod a+rx /home/qboxserver
     useradd -s /bin/jenkins_deploy.sh -m build
     mkdir -p "/home/build/{builds, packages}"
@@ -34,8 +34,8 @@ function install_puppet() {
 }
  
 function create_stepping_stone() {
-    echo 'del old dir ----'
-    rm -rf $INSTALL_DIR
+    echo 'backup old dir ----'
+    mv $INSTALL_DIR $INSTALL_DIR`date %Y%m%d%H%M%S`
     echo 'create new dir ----'
     mkdir -p $INSTALL_DIR/stepping_stone/{bin,etc,logs,share,docs}
     mkdir -p $INSTALL_DIR/stepping_stone/etc/{conf,keys}
@@ -88,11 +88,61 @@ function create_stepping_stone() {
     echo "export PATH=\$PATH:$TOOLS_DIR" >> /etc/profile
     source /etc/profile
 }
- 
+
+function update_stepping_stone() {
+    echo 'update stepping stone'
+
+    cd $INSTALL_DIR/stepping_stone/share/deploy
+    git clean -f -d
+    git pull
+
+    cd $INSTALL_DIR/stepping_stone/share/deploy_package/optools
+    git clean -f -d
+    git pull
+
+    echo 'copy stepping_stone tools ----'
+    cp -vr $INSTALL_DIR/stepping_stone/share/deploy/system/stepping_stone/* $INSTALL_DIR/stepping_stone/
+    chmod 600 -R $INSTALL_DIR/stepping_stone/etc/keys/
+
+    echo 'copy build user shell ----'
+    cp -v $INSTALL_DIR/stepping_stone/share/scripts/jenkins_deploy.sh /bin/jenkins_deploy.sh
+    chmod a+x /bin/jenkins_deploy.sh
+   
+    echo 'update qiniu command (qlogin, qdo, qview, qhistory, qdoc ...) ----'
+    for pname in "deploy" "do" "view" "history" "doc" "ssh"
+    do
+        sed "s/PROGRAM_PATH/\/root\/opt\/stepping_stone\/bin\/_$pname/g" $INSTALL_DIR/stepping_stone/share/scripts/c_shell.c > /tmp/t.c
+        gcc /tmp/t.c -o /tmp/q$pname
+        mv /tmp/q$pname $TOOLS_DIR
+        rm -f /tmp/t.c
+    done
+    chmod a+x $TOOLS_DIR/q*
+    chmod u+s $TOOLS_DIR/q*
+}
+
+function clean_stepping_stone() {
+    echo 'clean stepping stone'
+    rm -rf $INSTALL_DIR
+    rm -rf $TOOLS_DIR
+    echo 'restore env configure'
+    sed -i 's/^UMASK.*/UMASK 022/g' '/etc/login.defs'
+    userdel -r build
+}
+
 function main() {
-    configure_env
-    install_puppet
-    create_stepping_stone
+    action=$1
+    if [[ $action == 'install' ]]; then
+        clean_stepping_stone
+        configure_env
+        install_puppet
+        create_stepping_stone
+    elif [[ $action == 'update' ]]; then
+        update_stepping_stone
+    elif [[ $action == 'clean' ]]; then
+        clean_stepping_stone
+    else
+        echo "Usage: command <install|update|clean>"
+    fi
 }
  
-main
+main $@
