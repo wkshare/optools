@@ -1,0 +1,73 @@
+{{template "header_main" .}}
+<div class="main setting-key">
+	{{template "setting_head" .}}
+					<ul class="cards">
+						<!-- ko if: appInfo().key[0] -->
+						<li class="card key-card" data-bind="css:{off: appInfo().key[0].state}, attr:{state: appInfo().key[0].state}">
+							<div class="card-cnt">
+								<div id="key-switch" class="key-switch" data-bind="css:{'status-on': !appInfo().key[0].state, 'status-off': appInfo().key[0].state}">
+									<span class="status on">ON</span>
+									<span class="status off">OFF</span>
+									<div class="switcher"></div>
+								</div>
+								<!-- ko if: appInfo().key[0].state && appInfo().key[1] -->
+								<a id="remove-key" class="remove-key"><i class="icon-remove"></i>删除密钥</a>
+								<!-- /ko -->
+								<div class="key-line">
+									<h3 class="key-name">ACCESS KEY</h3>
+									<div class="key-block">
+										<input type="text" class="key-val" data-bind="attr: {value: appInfo().key[0].accessKey}" readonly="">
+									</div>
+								</div>
+								<div class="key-line">
+									<h3 class="key-name">SECRET KEY</h3>
+									<div class="key-block">
+										<input type="text" class="key-val" data-bind="attr: {value: appInfo().key[0].secretKey}" readonly="">
+										<span class="key-cover"></span>
+									</div>
+								</div>
+
+								<a href="" class="key-help"><i class="icon-info"></i>如何使用</a>
+							</div>
+						</li>
+						<!-- /ko -->
+						<!-- ko if: appInfo().key[1] -->
+						<li class="card key-card" data-bind="css:{off: appInfo().key[1].state}, attr:{state: appInfo().key[1].state}">
+							<div class="card-cnt">
+								<div id="key-switch2" class="key-switch" data-bind="css:{'status-on': !appInfo().key[1].state, 'status-off': appInfo().key[1].state}">
+									<span class="status on">ON</span>
+									<span class="status off">OFF</span>
+									<div class="switcher"></div>
+								</div>
+								<!-- ko if: appInfo().key[1].state -->
+								<a id="remove-key2" class="danger-btn remove-key"><i class="icon-remove"></i>删除密钥</a>
+								<!-- /ko -->
+								<div class="key-line">
+									<h3 class="key-name">ACCESS KEY</h3>
+									<div class="key-block">
+										<input type="text" class="key-val" data-bind="attr: {value: appInfo().key[1].accessKey}" readonly="">
+									</div>
+								</div>
+								<div class="key-line">
+									<h3 class="key-name">SECRET KEY</h3>
+									<div class="key-block">
+										<input type="text" class="key-val" data-bind="attr: {value: appInfo().key[1].secretKey}" readonly="">
+										<span class="key-cover"></span>
+									</div>
+								</div>
+								<a href="" class="key-help"><i class="icon-info"></i>如何使用</a>
+							</div>
+						</li>
+						<!-- /ko -->
+						<!-- ko ifnot: appInfo().key[1] -->
+						<li id="new-key-card" class="card new-key">
+							<a href="#new">
+								<span class="plus">+</span>
+								<span class="word">新建密钥</span>
+							</a>
+						</li>
+						<!-- /ko -->
+					</ul>
+	{{template "setting_foot" .}}
+</div>
+{{template "footer_main" .}}

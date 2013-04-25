@@ -1,0 +1,26 @@
+{{define "footer"}}
+</body>
+<!-- QQ analytics -->
+<script type="text/javascript" src="http://tajs.qq.com/stats?sId=23807508" charset="UTF-8"></script>
+
+<script type="text/javascript" src="//assets.zendesk.com/external/zenbox/v2.6/zenbox.js"></script>
+<style type="text/css" media="screen, projection">
+  @import url(/static/theme/default/css/global/zenbox.css);
+</style>
+<script type="text/javascript">
+  if (typeof(Zenbox) !== "undefined") {
+    Zenbox.init({
+      dropboxID:   "20173506",
+      url:         "https://qiniu.zendesk.com",
+      tabTooltip:  "技术支持",
+      tabImageURL: "http://portal-files.qiniudn.com/side_feedback.png",
+      tabColor:    "00a0de",
+      tabPosition: "Right"
+    });
+  }
+</script>
+
+<script type="text/javascript" src="/static/theme/default/js/global/global.js"></script>
+{{with ._CurrentPathJS}}<script type="text/javascript" src="{{.}}"></script>{{end}}
+</html>
+{{end}}

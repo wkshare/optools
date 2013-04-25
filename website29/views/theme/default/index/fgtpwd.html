@@ -1,0 +1,19 @@
+{{template "header_main" .}}
+<div class="main fgtpwd">
+	<div class="center-content">
+		<form class="block fgtpwd-form" method="post" action="">
+			<h3 class="title">找回密码</h3>
+			<p class="extra-name">请输入您的注册邮箱<i class="need">*</i></p>
+			<input name="email" type="text" placeholder="email" value="{{.POST.Get "email"}}" />
+			{{with .Flash.error}}
+			<p class="error">
+				{{.}}
+			</p>
+			{{end}}
+			<div class="align_center line">
+				<button class="btn fgtpwd" type="submit">下一步</button>
+			</div>
+		</form>
+	</div>	
+</div>
+{{template "footer_main" .}}

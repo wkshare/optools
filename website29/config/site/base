@@ -1,0 +1,11 @@
+#站点名称
+"SiteName" : "七牛云存储",
+"LoginFailedNum" : 3,
+#By Day
+"CookieExpires" : 7,
+#资产资源路径
+"AssetsDirectory" : "./assets/",
+#静态路径
+"StaticDirectory" : "static",
+#空间名称最小长度
+"BucketNameMinLength" : 3

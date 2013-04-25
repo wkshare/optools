@@ -1,0 +1,256 @@
+{{template "header_main" .}}
+<div class="main financial-package">
+	<div class="center-content">
+		<p class="current-info">您当前使用的套餐是：<span>套餐A</span></p>
+		<div class="box">
+			<table class="packages-table" cellpadding="0" cellspacing="0">
+				<thead>
+					<tr>
+						<th>服务</th>
+						<th>免费套餐</th>
+						<!-- ko foreach: packages -->
+						<th>套餐<span data-bind="text: $data.id"></span></th>
+						<!-- /ko -->
+						<th>大客户</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr class="package-cnt">
+						<td>
+							<p>套餐费用</p>
+							<p>&套餐内容</p>
+						</td>
+						<td>
+							<p class="free">免费</p>
+							<p>10GB空间</p>
+							<p>10GB下载流量</p>
+							<p>上传免费</p>
+						</td>
+						<!-- ko foreach: packages -->
+						<td>
+						<form action="pay" method="post">
+							<p class="price-line"><span class="RMB">￥</span><span class="price-num" data-bind="text: $data.money">99</span>元/月</p>
+							<p class="option-line">
+								<input id="11-chosen" type="radio" name="package_type" checked="checked" data-bind="attr:{value: 1}">
+								<label for="11-chosen">
+									<span data-bind="text: $data.space"></span>GB空间<br />
+									<span data-bind="text: $data.transferOut"></span>GB下载流量<br />
+									上传免费
+								</label>
+							</p>
+							<input type="hidden" name="package" data-bind="attr:{value: $data.id}">
+							<button class="yellow-btn buy" type="submit">立即购买</button>
+						</form>
+						</td>
+						<!-- /ko -->
+						<!-- <td>
+						<form action="pay" method="post">
+							<p class="price-line"><span class="RMB">￥</span><span class="price-num">99</span>元/月</p>
+							<p class="option-line">
+								<input id="11-chosen" type="radio" name="package_type" value="1" checked="checked">
+								<label for="11-chosen">
+									100GB空间<br />
+									200GB下载流量<br />
+									上传免费
+								</label>
+							</p>
+							<p class="option-line">
+								<input id="12-chosen" type="radio" name="package_type" value="2">
+								<label for="12-chosen">
+									50GB空间<br />
+									250GB下载流量<br />
+									上传免费
+								</label>
+							</p>
+							<input type="hidden" name="package" value="1">
+							<button class="yellow-btn buy" type="submit">立即购买</button>
+						</form>
+						</td>
+						<td>
+						<form action="pay" method="post">
+							<p class="price-line"><span class="RMB">￥</span><span class="price-num">199</span>元/月</p>
+							<p class="option-line">
+								<input id="21-chosen" type="radio" name="package_type" value="1" checked="checked">
+								<label for="21-chosen">
+									200GB空间<br />
+									300GB下载流量<br />
+									上传免费
+								</label>
+							</p>
+							<p class="option-line">
+								<input id="22-chosen" type="radio" name="package_type" value="2">
+								<label for="22-chosen">
+									50GB空间<br />
+									450GB下载流量<br />
+									上传免费
+								</label>
+							</p>
+							<input type="hidden" name="package" value="2">
+							<button class="yellow-btn buy" type="submit">立即购买</button>
+						</form>
+						</td>
+						<td>
+						<form action="pay" method="post">
+							<p class="price-line"><span class="RMB">￥</span><span class="price-num">1999</span>元/月</p>
+							<p class="option-line">
+								<input id="31-chosen" type="radio" name="package_type" value="1" checked="checked">
+								<label for="31-chosen">
+									1TB空间<br />
+									5TB下载流量<br />
+									上传免费
+								</label>
+							</p>
+							<p class="option-line">
+								<input id="32-chosen" type="radio" name="package_type" value="2">
+								<label for="32-chosen">
+									100GB空间<br />
+									6TB下载流量<br />
+									上传免费
+								</label>
+							</p>
+							<input type="hidden" name="package" value="3">
+							<button class="yellow-btn buy" type="submit">立即购买</button>
+						</form>
+						</td> -->
+						<td>
+							<p class="contact-us">
+								<a href="">由合同决定<br/>请联系我们</a>
+							</p>
+						</td>
+					</tr>
+					<!-- 
+					<tr>
+						<td>超额存储价格</td>
+						<td>0.6元/GB/月</td>
+						<td>0.5元/GB/月</td>
+						<td>0.5元/GB/月</td>
+						<td>0.5元/GB/月</td>
+						<td>由合同决定</td>
+					</tr>
+					<tr>
+						<td>超额流量价格</td>
+						<td>0.6元/GB/月</td>
+						<td>0.5元/GB/月</td>
+						<td>0.5元/GB/月</td>
+						<td>0.45元/GB/月</td>
+						<td>由合同决定</td>
+					</tr>
+					<tr>
+						<td>SSL连接</td>
+						<td>不支持</td>
+						<td>通过qiniudn证书支持</td>
+						<td>支持自定义域名证书</td>
+						<td>支持自定义域名证书</td>
+						<td>支持自定义域名证书</td>
+					</tr>
+					<tr>
+						<td>数据安全性</td>
+						<td>单数据中心多份冗余</td>
+						<td>多数据中心多份冗余</td>
+						<td>多数据中心多份冗余</td>
+						<td>多数据中心多份冗余</td>
+						<td>可按需配置</td>
+					</tr>
+					<tr>
+						<td>服务可用性保障</td>
+						<td>99.9%</td>
+						<td>99.95%</td>
+						<td>99.95%</td>
+						<td>99.95%</td>
+						<td>99.95%</td>
+					</tr>
+					<tr>
+						<td>加速节点</td>
+						<td>>20</td>
+						<td>>50</td>
+						<td>>50</td>
+						<td>>100</td>
+						<td>>100，可配置</td>
+					</tr>
+					<tr>
+						<td>空间数量</td>
+						<td>5</td>
+						<td>5</td>
+						<td>10</td>
+						<td>20</td>
+						<td>50</td>
+					</tr>
+					<tr>
+						<td>自定义域名</td>
+						<td>5</td>
+						<td>5</td>
+						<td>20</td>
+						<td>无限制</td>
+						<td>无限制</td>
+					</tr>
+					<tr>
+						<td>服务故障响应</td>
+						<td>7x24小时</td>
+						<td>7x24小时</td>
+						<td>7x24小时</td>
+						<td>7x24小时</td>
+						<td>7x24小时</td>
+					</tr>
+					<tr>
+						<td>监控报表实时性</td>
+						<td>每24小时更新</td>
+						<td>每小时更新</td>
+						<td>每小时更新</td>
+						<td>每小时更新</td>
+						<td>每小时更新</td>
+					</tr>
+					<tr>
+						<td>专属技术支持</td>
+						<td>-</td>
+						<td>-</td>
+						<td>-</td>
+						<td>有</td>
+						<td>有</td>
+					</tr>
+					<tr>
+						<td>私有云部署</td>
+						<td>-</td>
+						<td>-</td>
+						<td>-</td>
+						<td>-</td>
+						<td>支持</td>
+					</tr>
+					<tr>
+						<td>数据迁移服务</td>
+						<td>提供工具</td>
+						<td>提供工具</td>
+						<td>提供工具</td>
+						<td>提供工具，并提供硬盘寄送和上门迁移服务</td>
+						<td>提供工具，并提供硬盘寄送和上门迁移服务</td>
+					</tr>
+					<tr>
+						<td>服务定制开发</td>
+						<td>-</td>
+						<td>-</td>
+						<td>-</td>
+						<td>有</td>
+						<td>有</td>
+					</tr>
+					<tr>
+						<td>自定义数据处理模块部署</td>
+						<td>-</td>
+						<td>-</td>
+						<td>-</td>
+						<td>支持</td>
+						<td>支持</td>
+					</tr>
+					<tr>
+						<td>数据备份服务</td>
+						<td>提供工具</td>
+						<td>提供工具</td>
+						<td>提供工具</td>
+						<td>提供工具，并提供硬盘寄送服务</td>
+						<td>提供工具，并提供硬盘寄送服务</td>
+					</tr> -->
+				</tbody>
+			</table>
+		</div>
+	</div>
+</div>
+<script type="text/javascript" language="javascript" src="/static/theme/default/js/financial/global.js"></script>
+{{template "footer_main" .}}

@@ -1,0 +1,69 @@
+2013/04/25 20:43:53 [WARN][controllers/api] api.go:61:  ==> Document not found ~ jsonrpc.callRet
+2013/04/25 20:44:08 [WARN][controllers/api] api.go:61:  ==> Document not found ~ jsonrpc.callRet
+2013/04/25 20:44:16 [WARN][controllers/api] api.go:61:  ==> Document not found ~ jsonrpc.callRet
+2013/04/25 20:44:34 [WARN][controllers/api] api.go:61:  ==> Document not found ~ jsonrpc.callRet
+2013/04/25 20:44:36 200 https://acc.qbox.me/user/info
+2013/04/25 20:44:38 [WARN][controllers/api] api.go:61:  ==> Document not found ~ jsonrpc.callRet
+2013/04/25 20:44:46 [WARN][controllers/api] api.go:61:  ==> Document not found ~ jsonrpc.callRet
+2013/04/25 20:47:00 [WARN][controllers/api] api.go:61:  ==> Document not found ~ jsonrpc.callRet
+2013/04/25 20:53:25 200 https://acc.qbox.me/user/info
+2013/04/25 20:53:30 [WARN][controllers/api] api.go:61:  ==> invalid argument ~ jsonrpc.callRet
+2013/04/25 20:53:30 [WARN][controllers/api] api.go:61:  ==> invalid argument ~ jsonrpc.callRet
+2013/04/25 20:53:30 [WARN][controllers/api] api.go:61:  ==> invalid argument ~ jsonrpc.callRet
+2013/04/25 20:53:31 [WARN][controllers/api] api.go:61:  ==> invalid argument ~ jsonrpc.callRet
+2013/04/25 20:53:31 [WARN][controllers/api] api.go:61:  ==> invalid argument ~ jsonrpc.callRet
+2013/04/25 20:53:34 [WARN][controllers/api] api.go:61:  ==> E404 ~ jsonrpc.callRet
+2013/04/25 20:53:37 [WARN][controllers/api] api.go:61:  ==> E404 ~ jsonrpc.callRet
+2013/04/25 21:02:09 [WARN][controllers/api] api.go:61:  ==> Document not found ~ jsonrpc.callRet
+2013/04/25 21:02:26 200 https://acc.qbox.me/user/info
+2013/04/25 21:08:08 [WARN][controllers/api] api.go:61:  ==> Post http://115.238.155.237:9509/select/space: dial tcp 115.238.155.237:9509: connection timed out
+2013/04/26 09:13:10 [WARN][controllers/api] api.go:61:  ==> invalid argument ~ jsonrpc.callRet
+2013/04/26 09:13:45 [WARN][controllers/api] api.go:61:  ==> invalid argument ~ jsonrpc.callRet
+2013/04/26 09:13:48 [WARN][controllers/api] api.go:61:  ==> Document not found ~ jsonrpc.callRet
+2013/04/26 09:14:51 [WARN][controllers/api] api.go:61:  ==> Post http://115.238.155.237:9519/get_bills: dial tcp 115.238.155.237:9519: connection timed out
+2013/04/26 10:12:42 200 https://acc.qbox.me/user/info
+2013/04/26 10:15:41 200 https://acc.qbox.me/user/create
+2013/04/26 10:15:41 200 https://acc.qbox.me/set_user_type
+2013/04/26 10:16:01 200 https://acc.qbox.me/user/info
+2013/04/26 10:24:25 [WARN][controllers/api] api.go:61:  ==> invalid argument ~ jsonrpc.callRet
+2013/04/26 10:24:27 [WARN][controllers/api] api.go:61:  ==> invalid argument ~ jsonrpc.callRet
+2013/04/26 10:24:27 [WARN][controllers/api] api.go:61:  ==> invalid argument ~ jsonrpc.callRet
+2013/04/26 10:27:05 [WARN][controllers/api] api.go:61:  ==> Document not found ~ jsonrpc.callRet
+2013/04/26 10:27:19 200 https://acc.qbox.me/user/info
+2013/04/26 10:28:14 [WARN][controllers/api] api.go:61:  ==> E404 ~ jsonrpc.callRet
+2013/04/26 10:28:17 [WARN][controllers/api] api.go:61:  ==> E404 ~ jsonrpc.callRet
+2013/04/26 10:28:58 [WARN][controllers/api] api.go:61:  ==> E404 ~ jsonrpc.callRet
+2013/04/26 10:29:09 [WARN][controllers/api] api.go:61:  ==> E404 ~ jsonrpc.callRet
+2013/04/26 10:29:48 200 https://acc.qbox.me/user/info
+2013/04/26 10:30:52 [WARN][controllers/api] api.go:61:  ==> app is not found ~ jsonrpc.callRet
+2013/04/26 11:00:35 200 https://acc.qbox.me/user/info
+2013/04/26 11:57:06 200 https://acc.qbox.me/user/info
+2013/04/26 13:26:24 [WARN][controllers/api] api.go:61:  ==> Document not found ~ jsonrpc.callRet
+2013/04/26 13:26:35 [WARN][controllers/api] api.go:61:  ==> Document not found ~ jsonrpc.callRet
+2013/04/26 13:32:00 200 https://acc.qbox.me/user/info
+2013/04/26 13:44:01 [WARN][controllers/api] api.go:61:  ==> Post http://115.238.155.237:9521/get: dial tcp 115.238.155.237:9521: connection timed out
+2013/04/26 13:44:02 [WARN][controllers/api] api.go:61:  ==> Post http://115.238.155.237:9519/get_bills: dial tcp 115.238.155.237:9519: connection timed out
+2013/04/26 14:23:54 [WARN][controllers/api] api.go:61:  ==> Document not found ~ jsonrpc.callRet
+2013/04/26 14:24:28 200 https://acc.qbox.me/user/info
+2013/04/26 15:37:16 200 https://acc.qbox.me/user/info
+2013/04/26 16:17:16 200 https://acc.qbox.me/user/info
+2013/04/26 16:18:41 200 https://acc.qbox.me/user/info
+2013/04/26 16:21:06 [WARN][controllers/api] api.go:61:  ==> invalid argument ~ jsonrpc.callRet
+2013/04/26 16:21:14 [WARN][controllers/api] api.go:61:  ==> invalid argument ~ jsonrpc.callRet
+2013/04/26 16:26:12 [WARN][controllers/api] api.go:61:  ==> invalid argument ~ jsonrpc.callRet
+2013/04/26 17:55:17 200 https://acc.qbox.me/user/info
+2013/04/26 17:56:54 [WARN][controllers/api] api.go:61:  ==> Document not found ~ jsonrpc.callRet
+2013/04/26 17:57:01 [WARN][controllers/api] api.go:61:  ==> Document not found ~ jsonrpc.callRet
+2013/04/26 17:59:22 [WARN][controllers/api] api.go:61:  ==> Document not found ~ jsonrpc.callRet
+2013/04/26 18:50:50 200 https://acc.qbox.me/user/info
+2013/04/26 21:07:02 [WARN][controllers/api] api.go:61:  ==> Post http://rs.qbox.me/buckets: dial tcp 115.238.155.240:80: connection timed out
+2013/04/26 21:16:36 [WARN][controllers/api] api.go:61:  ==> Post http://115.238.155.237:9509/info: dial tcp 115.238.155.237:9509: connection timed out
+2013/04/26 21:16:36 [WARN][controllers/api] api.go:61:  ==> Post http://115.238.155.237:9509/info: dial tcp 115.238.155.237:9509: connection timed out
+2013/04/27 10:15:35 200 https://acc.qbox.me/user/info
+2013/04/27 10:15:45 [WARN][controllers/api] api.go:61:  ==> Document not found ~ jsonrpc.callRet
+2013/04/27 10:15:47 [WARN][controllers/api] api.go:61:  ==> Document not found ~ jsonrpc.callRet
+2013/04/27 10:16:01 [WARN][controllers/api] api.go:61:  ==> Document not found ~ jsonrpc.callRet
+2013/04/27 10:16:07 [WARN][controllers/api] api.go:61:  ==> Document not found ~ jsonrpc.callRet
+2013/04/27 10:17:14 [WARN][controllers/api] api.go:61:  ==> Post http://uc.qbox.me/bucketInfo: dial tcp 118.26.231.133:80: connection timed out
+2013/04/27 10:29:41 [WARN][controllers/api] api.go:61:  ==> bad token ~ jsonrpc.callRet
+2013/04/27 10:29:43 [WARN][controllers/api] api.go:61:  ==> bad token ~ jsonrpc.callRet

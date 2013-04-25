@@ -1,0 +1,10 @@
+"payment":{
+	"alipay": {
+		"partner": "2088701687133815",
+		"key": "4fczdfpvt62ewis5z07h97s2u0enoc93",
+		"seller_email": "qiniu.payment@gmail.com",
+		"return_url": "http://portalreal.qiniuyun.com/payment/alipay-return",
+		"notify_url": "http://portalreal.qiniuyun.com/payment/alipay-notify",
+		"transport": "https"
+	}
+}

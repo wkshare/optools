@@ -1,0 +1,30 @@
+{{template "header_main" .}}
+<div class="main setpwd">
+	<div class="center-content">
+		<form class="block setpwd-form" method="post" action="">
+			<h3 class="title">修改密码</h3>
+			<div class="line pwd-line">
+				<p class="extra-name">输入原密码:<i class="need">*</i></p>
+				<input name="old_password" type="password" placeholder="" />
+				<i title="按住显示" class="icon-eye show-pwd"></i>
+			</div>
+
+			<div class="line pwd-line">
+				<p class="extra-name">输入新密码:<i class="need">*</i></p>
+				<input name="new_password" type="password" placeholder="" />
+				<i id="show-pwd" title="按住显示" class="icon-eye show-pwd"></i>
+			</div>
+
+			<p class="error">
+			{{with .Flash.error}}
+				{{.}}
+			{{end}}
+			</p>
+			<div class="align_center line">
+				<button class="btn setpwd">提交</button>
+				<a class="abright register" href="javascript:window.history.back()" type="submit">放弃并返回</a>
+			</div>
+		</form>
+	</div>	
+</div>
+{{template "footer_main" .}}

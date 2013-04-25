@@ -1,0 +1,17 @@
+<p>好给力，又有一个潜在客户啦！:)</p>
+<p>-------------------以下是开发者注册信息-------------------</p>
+<p>姓名：{{.developer.FullName}} {{with .sex}}({{.}}){{end}}</p>
+<p>电话：{{.developer.PhoneNumber}}</p>
+{{if .developer.ImNumber}}
+<p>{{index .ImCate .developer.ImCategory}}：{{.developer.ImNumber}}</p>
+{{end}}
+<p>类型：{{if .developer.IsPro}}企业开发者{{else}}个人开发者{{end}}</p>
+<p>邮箱：{{.developer.Email}}</p>
+{{if .developer.CompanyName}}
+<p>公司：{{.developer.CompanyName}}</p>
+{{end}}
+{{if .developer.Website}}
+<p>网址：{{.developer.Website}}</p>
+{{end}}
+<p>注册时间：{{call .timeToStr .developer.CreatedAt}}</p>
+<p>审核传送门：<a href="http://{{.activate_url}}" target="_blank">{{.activate_url}}</a></p>

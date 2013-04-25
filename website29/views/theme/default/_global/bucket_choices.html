@@ -1,0 +1,62 @@
+{{define "bucket_choices_head"}}
+<div class="left-op">
+	<ul class="ops">
+		<a href="/" class="op home"><li><i class="icon-home"></i></li></a>
+		<li id="buckets-ops" class="op bucket">
+			<span id="open-buckets" class="current-name">
+				<i class="icon-open left"></i>
+				<span class="name-wrap" title="{{with .GET.Get "bucket"}}{{.}}{{end}}">
+				{{with .GET.Get "bucket"}}{{.}}{{else}}
+				选择一个空间
+				{{end}}
+				</span>
+				<i class="icon-down right"></i>
+			</span>
+			<ul id="bucket-ops" class="bucket-ops" data-bind="style: { paddingBottom: bucketsName().length>5 ? '30px':'0'}">
+				<a href="/bucket/create"><li id="new-bucket" class="bucket-op new-bucket"><span class="plus">+</span>新建空间</li></a>
+				<!-- ko foreach: bucketsName -->
+{{end}}
+{{define "bucket_choices_foot"}}
+				<!-- /ko -->
+				<!-- ko if: bucketsName().length>5 -->
+				<li id="bucket-more-tip" class="bucket-more-tip">↓ 向下滚动查看更多</li>
+				<!-- /ko -->
+			</ul>
+			
+		</li>
+		<script type="text/javascript">
+		$(function () {
+			$("#buckets-ops").bindClick();
+
+			if(!model.loadBucketsName()){
+				//console.log("Load buckets from remote.");
+				model.getBucketsName(function(){
+					model.saveBucketsName();
+				});
+			}else{
+				//console.log("Load buckets from local.");
+			}
+			if(typeof(_bucketName)!=="undefined"){
+				model.getCertainBucket(_bucketName);
+			}
+		});
+		</script>
+	</ul>
+</div>
+{{end}}
+
+{{define "index_bucket_choices"}}
+{{template "bucket_choices_head" .}}
+					<a data-bind="attr: { href: '/bucket/index?bucket='+$data, title: $data }">
+						<li class="bucket-op"><span data-bind="text: $data"></span></li>
+					</a>
+{{template "bucket_choices_foot" .}}
+{{end}}
+
+{{define "bucket_bucket_choices"}}
+{{template "bucket_choices_head" .}}
+					<a data-bind="attr: { href: '?bucket='+$data, title: $data }">
+						<li class="bucket-op"><span data-bind="text: $data"></span></li>
+					</a>
+{{template "bucket_choices_foot" .}}
+{{end}}

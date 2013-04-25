@@ -1,0 +1,141 @@
+{{template "header_main" .}}
+<div class="main setting-base">
+	{{template "setting_head" .}}
+		<div class="left-block">
+			<div class="grid">
+				<div class="line p-info">{{with .Session.userinfo.Email}}{{.}}{{end}}</div>
+				<div class="line">
+					<span class="name">登陆密码：</span>
+					<span class="value">建议至少每90天更换一次。</span>
+					<a href="/setting/setpwd" class="sp-btn set">修改密码</a>
+				</div>
+				<div class="line">
+					<span class="name">初始联系：</span>
+					<div class="value">
+						<input id="full-name-in" class="main-val" type="text" name="fullname" class="value">
+						<select name="gender" class="add-val">
+							<option value="0">先生</option>
+							<option value="1">女士</option>
+						</select>
+					</div>
+					<label class="icon-pencil right" for="full-name-in"></label>
+				</div>
+				<div class="line">
+					<span class="name">公司名称：</span>
+					<div class="value">
+						<input id="company-name-in" class="main-val" type="text" name="company_name" class="value">
+					</div>
+					<label class="icon-pencil right" for="company-name-in"></label>
+				</div>
+				<div class="line">
+					<span class="name">即时通讯：</span>
+					<div class="value">
+						<input id="im-number-in" class="main-val" type="text" name="im_number" class="value">
+						<select name="im_category" class="add-val">
+							{{OptionsForSelect .Body.ImCate ""}}
+						</select>
+					</div>
+					<label class="icon-pencil right" for="im-number-in"></label>
+				</div>
+				<div class="line">
+					<span class="name">联系电话：</span>
+					<div class="value">
+						<input id="phone-number-in" class="main-val" type="text" name="phone_number" class="value">
+					</div>
+					<label class="icon-pencil right" for="phone-number-in"></label>
+				</div>
+				<div class="line">
+					<button id="save" class="btn save" disabled="disabled">保存修改</button>
+				</div>
+			</div>
+			{{/*}}
+			<div class="grid">
+				<div class="line">
+					<span class="name">提醒开启：</span>
+					<ul class="value">
+						<li>5项邮件提醒</li>
+						<li>2项短信提醒</li>
+						<li>4项GTalk提醒</li>
+					</ul>
+					<a class="sp-btn set">管理提醒设置</a>
+				</div>
+				<div class="line">
+					<span class="name">专项联系人：</span>
+					<ul class="value">
+						<li>技术：张三斤 先生，李四两 先生</li>
+						<li>商务：赵富贵 先生</li>
+						<li>财务：王五克 女士</li>
+					</ul>
+					<a class="sp-btn set">管理联系人</a>
+				</div>
+			</div>
+			{{*/}}
+		</div>
+		<div class="right-block">
+			<div class="grid acc-type">
+				<div class="line head-line">账号类型</div>
+				<div class="line body-line">免费</div>
+				<div class="line foot-line">
+				</div>
+				<div class="highlight-cover">
+					<a class="link all-packages" href="/financial/package">所有套餐计划</a>
+				</div>
+			</div>
+			<div class="grid invite">
+				<div class="line title-line">成功邀请人数</div>
+				<div class="line num-line">
+					<span class="num" data-bind="text: inviteeNum">12</span>人
+				</div>
+				<div class="line prize-line">
+					<p>累计推荐奖励</p>
+					<p><span class="prize-num">20GB</span>存储空间</p>
+					<p><span class="prize-num">50GB</span>下行流量</p>
+				</div>
+				<div class="line invite-line">
+				</div>
+				<div class="highlight-cover">
+					<a class="link plan-link" href="">有奖推荐计划</a>
+					<a id="invite" class="yellow-btn invite">马上邀请朋友</a>
+				</div>
+			</div>
+		</div>
+
+	{{template "setting_foot" .}}
+	<div id="curtain" class="curtain">
+		<div id="suspended-box" class="suspended-box">
+			<div class="box-head">
+				<h2 class="title">邀请朋友</h2>
+				<a href="#"><i id="close-btn" class="icon-close close-box"></i></a>
+			</div>
+			<div class="box-body">
+				<div class="box-body-cnt">
+					<input id="invite-url" type="text" class="invite-url unchangable" data-bind="attr: {value: genInviteUrl(inviteInfo())}" readonly="">
+					<p class="tip">
+						复制以上链接分享给好友！
+					</p>
+					<p class="tip">
+						或者通过邮件分享给好友：
+					</p>
+					<p class="tip">邮件正文：</p>
+					<div class="mail-cnt">
+						<p>哈啰，XXX</p>
+						<p>我是 YYY，正在使用七牛云存储，每个月有 X GB X M的下行流量，这些都是免费的。好东西拿给大家分享，推荐你使用。</p>
+						<p>可以点击注册链接</p>
+						<p>或者直接复制链接到浏览器打开</p>
+						<p>http://www.domain.com/fsjlkfjuio</p>
+						<p>相信你将有很棒的体验。</p>
+					</div>
+					<p class="tip">
+						在下面填写好友邮箱地址（多个邮箱请用逗号隔开，一次可邀请50位朋友）
+					</p>
+					<div contentEditable="true" id="mail-list-in" class="mail-list-in"></div>
+				</div>
+			</div>
+			<div class="box-foot">
+				<button id="send-invite" class="btn">发送邀请</button>
+				<button class="cancel">返回</button>
+			</div>
+		</div>
+	</div>
+</div>
+{{template "footer_main" .}}

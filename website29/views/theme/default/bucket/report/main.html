@@ -1,0 +1,33 @@
+{{template "header_main" .}}
+{{$bucketName := .GET.Get "bucket"}}
+<div class="main bucket-report-main">
+	{{template "bucket_report_head" .}}
+			<ul class="cards">
+				<a href="/bucket/report/storage{{with $bucketName}}?bucket={{.}}{{end}}">
+					<li class="card chart-card">
+						<h3 class="title">文件存储</h3>
+						<div id="space-chart" class="chart">
+							<p style="line-height:180px;text-align:center;color: #AAA;">统计信息加载中...</p>
+						</div>
+					</li>
+				</a>
+				<a href="/bucket/report/flow{{with $bucketName}}?bucket={{.}}{{end}}">
+					<li class="card chart-card">
+						<h3 class="title">下载流量</h3>
+						<div id="transfer-chart" class="chart">
+							<p style="line-height:180px;text-align:center;color: #AAA;">统计信息加载中...</p>
+						</div>
+					</li>
+				</a>
+				<a href="/bucket/report/requestnum{{with $bucketName}}?bucket={{.}}{{end}}">
+					<li class="card chart-card">
+						<h3 class="title">API请求</h3>
+						<div id="apicall-chart" class="chart">
+							<p style="line-height:180px;text-align:center;color: #AAA;">统计信息加载中...</p>
+						</div>
+					</li>
+				</a>
+			</ul>
+	{{template "bucket_report_foot" .}}
+</div>
+{{template "footer_main" .}}

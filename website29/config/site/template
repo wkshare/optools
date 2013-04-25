@@ -1,0 +1,14 @@
+#模板目录
+"TemplateDirectory"        : "./views/",
+#模板主题目录
+"ThemeDirectory"           : "theme/",
+#模板主题
+"Theme"                    : "default",
+#从全局模板目录检索的文件 “*”代表全部，“file,file”逗号分隔的代表只检索出这些文件
+"TemplateFile"       	   : "*/*.html|*/*/*.html",
+#静态资源Css存放目录
+"StaticCssDirectory"       : "css/",
+#静态资源Js存放目录
+"StaticJsDirectory"        : "js/",
+#静态资源Image存放目录
+"StaticImgDirectory"       : "img/"

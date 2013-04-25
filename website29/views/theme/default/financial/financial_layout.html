@@ -1,0 +1,50 @@
+{{define "financial_head"}}
+	{{template "index_box_head" .}}
+			<div class="cnt right-main-layout">
+				<div class="left-cnt">
+					<ul class="choices">
+						<a href="/financial/main" class="choice"><li class="">
+							<h4 class="choice-title">财务概况</h4>
+							<p class="choice-description">基本账号信息的查看和管理</p>
+						</li></a>
+						<a href="/financial/price" class="choice"><li class="">
+							<h4 class="choice-title">价格表</h4>
+							<p class="choice-description">查询本账号的价格和打折信息</p>
+						</li></a>
+						<a href="/financial/consumptions" class="choice"><li class="">
+							<h4 class="choice-title">消费历史</h4>
+							<p class="choice-description">查询历史消费记录</p>
+						</li></a>
+						<a href="/financial/recharges" class="choice"><li class="">
+							<h4 class="choice-title">充值历史</h4>
+							<p class="choice-description">查询充值历史</p>
+						</li></a>
+						<a href="/financial/bill" class="choice"><li class="">
+							<h4 class="choice-title">账单</h4>
+							<p class="choice-description">按月度查看已出账单</p>
+						</li></a>
+						<a href="/financial/recharge" class="choice"><li class="">
+							<h4 class="choice-title">充值</h4>
+							<p class="choice-description">包括常规充值</p>
+						</li></a>
+						<a href="/financial/prize" class="choice"><li class="">
+							<h4 class="choice-title">奖励和礼券</h4>
+							<p class="choice-description">管理和查看奖励和礼券</p>
+						</li></a>
+						<a href="/financial/invoice" class="choice"><li class="">
+							<h4 class="choice-title">发票管理</h4>
+							<p class="choice-description">对最近三个月内的支付申请发票</p>
+						</li></a>
+					</ul>
+				</div>
+				<div class="right-cnt">
+					<div class="inner-block">
+{{end}}
+
+{{define "financial_foot"}}
+					</div>
+				</div>
+			</div>
+<script type="text/javascript" language="javascript" src="/static/theme/default/js/financial/global.js"></script>
+	{{template "index_box_foot" .}}
+{{end}}

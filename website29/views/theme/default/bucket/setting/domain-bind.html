@@ -1,0 +1,159 @@
+{{template "header_main" .}}
+<script type="text/javascript" src="/static/add-on/base64/jquery.base64.min.js"></script>
+<div class="main bucket-setting-domain-bind">
+	{{template "bucket_setting_head" .}}
+	{{/*}}
+					<div class="tabs-box">
+						<ul class="tabs-header">
+							<li class="tab-header current">永久域名</li>
+							<a href="" class="right another-link">了解域名的用途</a>
+						</ul>
+						<ul class="tabs-body">
+							<li class="tab-body current">
+								<p class="current-setting"><span class="setting-name">本空间的永久域名为：</span><span class="current-setting-cnt">b0394557-754.qiniudn.com</span></p>
+								<p class="tip">新建空间后系统自动分配的域名，不可更改和删除。</p>
+							</li>
+						</ul>
+					</div>
+					{{*/}}
+					<div class="tabs-box">
+						<ul class="tabs-header">
+							<li class="tab-header current">二级域名</li>
+						</ul>
+						<ul class="tabs-body">
+							<li class="tab-body current">
+								
+								<p class="current-setting">
+									<span class="setting-name">当前已绑定的二级域名为：</span>
+									<!-- ko ifnot: certainBucket().bind_domains().level2 -->
+									<span class="current-setting-cnt">
+										无
+									</span>
+									<!-- /ko -->
+									<!-- ko with: certainBucket().bind_domains().level2 -->
+									<span class="current-setting-cnt deletable">
+										<span data-bind="text: $data, attr:{title:$data}"></span>
+										<i class="icon-delete domain-delete">x</i>
+									</span>
+									<!-- /ko -->
+								</p>
+								<p class="tip">一个恰当的二级域名可以方便记忆和传播，更重要的是，它不需要你事先去进行域名备案。</p>
+								<a id="set-level2-domain" class="btn set-btn">设置二级域名</a>
+								
+							</li>
+						</ul>
+					</div>
+					<div class="tabs-box">
+						<ul class="tabs-header">
+							<li class="tab-header current">自定义域名</li>
+						</ul>
+						<ul class="tabs-body">
+							<li class="tab-body current">
+								<p class="current-setting">
+									<span class="setting-name">当前已绑定的自定义域名：</span>
+									<!-- ko ifnot: certainBucket().bind_domains().custom.length -->
+									<span class="current-setting-cnt">
+										无
+									</span>
+									<!-- /ko -->
+									<!-- ko foreach: certainBucket().bind_domains().custom -->
+									<span class="current-setting-cnt deletable">
+										<span data-bind="text: $data"></span>
+										<i class="icon-delete domain-delete">x</i>
+									</span>
+									<!-- /ko -->
+								</p>
+								<p class="current-setting">
+									<span class="setting-name">审核中的自定义域名：</span>
+									<!-- ko if: certainCustomDomains().length == 0 -->
+									<span class="current-setting-cnt">
+										无
+									</span>
+									<!-- /ko -->
+									<!-- ko foreach: certainCustomDomains -->
+									<span class="current-setting-cnt deletable">
+										<span data-bind="text: $data.domain, attr:{title: $data.domain, _id: $data._id}"></span>
+										<i class="icon-delete domain-cancel">x</i>
+									</span>
+									<!-- /ko -->
+								</p>
+								<!-- ko if: certainCustomDomains().length == 0 -->
+								<p class="tip">你可以绑定一个自定义域名以做到真正的无缝集成。该自定义域名必须是已经备案的。</p>
+								<!-- /ko -->
+								<!-- ko if: certainCustomDomains().length > 0 -->
+								<p class="tip">申请自定义域名，需要您将此域名备案号和企业营业执照信息发送到 support@qiniutek.com ，我们会在2个工作日内进行审核。</p>
+								<!-- /ko -->
+								<a id="set-custom-domain" class="btn set-btn">自定义域名</a>
+							</li>
+						</ul>
+					</div>
+					
+	{{template "bucket_setting_foot" .}}
+	<div id="level2-domain-setting-curtain" class="curtain level2">
+		<div class="suspended-box">
+			<div class="box-head">
+				<h2 class="title">二级域名设置</h2>
+				<a href="#"><i class="icon-close close-box"></i></a>
+			</div>
+
+			<div class="box-body">
+				<div class="box-body-cnt">
+					<p class="op-guide">请选择一个合适的二级域名：</p>
+					<div class="ops-block">
+						<p class="op_in">
+							<input class="short" name="level2_domain" type="text" data-bind='value: $data.certainBucket().bind_domains().level2.split(".")[0]'>
+							<span>.{{.Body.DnDomain}}</span>
+							<i class="icon-ok name-ok"></i>
+						</p>
+						<p id="level2-bind-error" class="error"></p>
+					</div>
+					<p class="agreement">
+						<input id="level2-agree" type="checkbox" name="agree">
+						<label for="level2-agree">我已经仔细阅读并同意七牛云存储子域名管理规则。</label>
+					</p>
+				</div>
+			</div>
+			<div class="box-foot">
+				<button id="level2-submit" class="btn submit" disabled="disabled">申请绑定</button>
+				<button class="link cancel">放弃并返回</button>
+			</div>
+		</div>
+	</div>
+	<div id="custom-domain-setting-curtain" class="curtain custom">
+		<div class="suspended-box">
+			<div class="box-head">
+				<h2 class="title">自定义域名</h2>
+				<a href="#"><i class="icon-close close-box"></i></a>
+			</div>
+
+			<div class="box-body">
+				<div class="box-body-cnt">
+					<p class="op-guide">请输入要绑定的自定义域名：</p>
+					<div class="ops-block">
+						<p class="op_in">
+							<input class="long" name="custom_domain" type="text" placeholder="自定义域名，如img.qiniu.com">
+							<i class="icon-ok name-ok"></i>
+						</p>
+						<p id="custom-bind-error" class="error"></p>
+					</div>
+					<div class="attention">
+						<p>注意事项：</p>
+						<p>1.申请绑定的域名必须已经备案，否则无法通过审核。</p>
+						<p>2.建议绑定一个子域名而不是顶级域名，即建议为img1.qiniu.com而非qiniu.com。</p>
+						<p>3.审批和设置需要约七个工作日，请耐心等待。完成后您将受到一封邮件通知。</p>
+						<p>4.绑定完成后，需要在该域名的DNS服务器上设置CNAME为c.qiniudn.com。</p>
+					</div>
+					<p class="agreement">
+						<input id="custom-agree" type="checkbox" name="agree">
+						<label for="custom-agree">我已经仔细阅读以上注意事项</label>
+					</p>
+				</div>
+			</div>
+			<div class="box-foot">
+				<button id="custom-submit" class="btn submit" disabled="disabled">申请绑定</button>
+				<button class="link cancel">放弃并返回</button>
+			</div>
+		</div>
+	</div>
+</div>
+{{template "footer_main" .}}

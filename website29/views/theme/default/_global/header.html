@@ -1,0 +1,39 @@
+{{define "header"}}<!doctype html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>{{with .Title}}{{.}} - {{end}}{{.Config.SiteName}}</title>
+		<link href="/favicon.png" rel="shortcut icon" type="image/png">
+		<link href="/static/theme/default/css/global/main.css" rel="stylesheet">
+		<!--[if lt IE 9]>
+		<script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+		<![endif]-->
+		<script type="text/javascript" src="/static/add-on/jquery/jquery-1.9.1.min.js"></script>
+		<script>
+		// debug for ie 8-
+		if(!String.prototype.trim){
+			String.prototype.trim = function(){
+				return $.trim(this);
+			};
+		}
+		if(!Array.prototype.indexOf){
+			Array.prototype.indexOf = function(ele){
+				for (var i = this.length - 1; i >= 0; i--) {
+					if(this[i]==ele) return i;
+				};
+				return -1;
+			};
+		}
+		if(typeof JSON === "undefined"){
+			var JSON = {
+				stringify: function(s){
+					return s.toString ? s.toString() : s;
+				}
+			}
+		}
+		</script>
+		<script type="text/javascript" src="/static/add-on/phpjs/strtotime.js"></script>
+		<script type="text/javascript" src="/static/add-on/knockout/knockout-2.2.1.js"></script>
+	</head>
+<body>
+{{end}}

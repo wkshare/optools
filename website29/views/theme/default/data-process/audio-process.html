@@ -1,0 +1,271 @@
+{{template "header_main" .}}
+<script type="text/javascript" language="javascript" src="/static/add-on/jquery-ui/jquery-ui-1.10.1.custom.min.js"></script>
+<div class="main data-process-audio-process">
+{{template "data_process_head" .}}
+					<ul class="cards">
+						{{/*}}
+						<!-- ko foreach: certainBucket().styles -->
+						<li class="card image-style">
+							<h3 class="style-head">
+								<span class="style-name" data-bind="text: $data.name"></span>
+								<a href="#delete" class="right op delete-op"><i class="icon-trash"></i></a>
+							</h3>
+							<ul class="style-details">
+								<!-- ko if: !parseStyle($data.cnt) -->
+								<p style="margin:10px 0;">该样式无法在页面上编辑，若须编辑，请使用命令行工具</p>
+								<!-- /ko -->
+								<p class="style-cnt" data-bind="text: $data.cnt, css: {hidden: parseStyle($data.cnt)}"></p>
+								<!-- ko with: parseStyle($data.cnt) -->
+								
+								<!-- ko if: $data.adaptationMode -->
+								<li class="detail">
+									图片尺寸：
+									<!-- ko with: $data.width -->
+									宽度<span data-bind="text: $data"></span>px，
+									<!-- /ko -->
+									<!-- ko with: $data.height -->
+									高度<span data-bind="text: $data"></span>px，
+									<!-- /ko -->
+									<span data-bind="text: adaptationModes[$data.adaptationMode]"></span>
+								</li>
+								<!-- /ko -->
+								<li class="detail">
+									图片质量：
+									<span data-bind="text: $data.quality ? $data.quality : '默认'"></span>
+								</li>
+								<li class="detail">
+									图片格式：
+									<span data-bind="text: $data.format ? $data.format : '默认'"></span>
+								</li>
+								<li class="detail">
+									旋转角度：
+									<span data-bind="text: ($data.rotate ? $data.rotate : '0')+'°'"></span>
+								</li>
+								<!-- /ko -->
+							</ul>
+							<span class="bottom-ops">
+								<!-- ko with: parseStyle($data.cnt) -->
+								<a href="#edit" class="right op edit-op"><i class="icon-edit"></i>编辑</a>
+								<!-- /ko -->
+								<a href="#" target="_blank" class="right op" data-bind="attr:{href: 'http://portal-files.qiniudn.com/sample1.jpg?'+$data.cnt}"><i class="icon-sample"></i>查看样例</a>
+							</span>
+						</li>
+						<!-- /ko -->
+						{{*/}}
+						<li id="new-audio-style" class="card new-style">
+							<a href="#new">
+								<span class="plus">+</span>
+								<span class="word">新建</span>
+							</a>
+						</li>
+					</ul>
+
+					
+{{template "data_process_foot" .}}
+	<div id="curtain" class="curtain">
+		<div id="suspended-box" class="suspended-box">
+			<div class="box-head">
+				<h2 class="title">图片样式</h2>
+				<a href="#"><i id="close-btn" class="icon-close close-box"></i></a>
+			</div>
+
+			<div class="box-body">
+				<div class="name-line">
+					<span class="name">样式名称:</span>
+					<input id="style-name-in" class="name_in" name="style_name" type="text" placeholder="输入样式名称（只限字母、小数点）"/>
+					<i class="icon-ok name-ok"></i>
+				</div>
+				<div class="details-block">
+					<div class="detail-name-line">
+						<ul class="detail-names">
+							<li class="detail-name">基本设置</li>
+							{{/*}}
+							<li class="detail-name hidden">水印</li>
+							{{*/}}
+						</ul>
+						<div class="preview">效果预览</div>
+					</div>
+					<div class="detail-box">
+						<ul class="details">
+							<li class="detail">
+								<div class="style-item size-mode">
+									<p class="item-title">选择一个对应的图片尺寸适配方式：</p>
+									<div class="item-option">
+										<div class="options">
+											<img class="example" src="/static/theme/default/image/data-process/mode1.png"></img>
+											<img class="example" src="/static/theme/default/image/data-process/mode2.png"></img>
+											<img class="example" src="/static/theme/default/image/data-process/mode3.png"></img>
+											<img class="example" src="/static/theme/default/image/data-process/mode4.png"></img>
+											<img class="example" src="/static/theme/default/image/data-process/mode4.png"></img>
+											<img class="example" src="/static/theme/default/image/data-process/mode4.png"></img>
+											<div id="adaptation-style-value" class="hidden">
+												<input type="radio" name="adaptation_style" value='1' checked="true">
+												<input type="radio" name="adaptation_style" value='2'>
+												<input type="radio" name="adaptation_style" value='3'>
+												<input type="radio" name="adaptation_style" value='4'>
+												<input type="radio" name="adaptation_style" value='5'>
+												<input type="radio" name="adaptation_style" value='6'>
+											</div>
+											<div id="adaptation-style-setter" class="adaptation-styles">
+												<div class="adaptation-style active" value='1' >
+													<p>限定宽度</p>
+													<p>高度等比缩放</p>
+												</div>
+												<div class="adaptation-style" value='2' >
+													<p>限定高度</p>
+													<p>宽度等比缩放</p>
+												</div>
+												<div class="adaptation-style" value='3' >
+													<p>限定宽度和高度</p>
+													<p>图像等比缩放</p>
+												</div>
+												<div class="adaptation-style" value='4' >
+													<p>限定宽度和高度</p>
+													<p>图像居中裁剪</p>
+												</div>
+												<div class="adaptation-style" value='5' >
+													<p>限定长边</p>
+													<p>短边自适应</p>
+												</div>
+												<div class="adaptation-style" value='6' >
+													<p>限定短边</p>
+													<p>长边边自适应</p>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+								<div class="style-item">
+									<p class="item-title">输入对应缩略方式的图片宽度和高度：</p>
+									<div class="item-option">
+										<p><span style="margin-right:25px">宽度： <input type="text" name="width" class="small"> px</span><span>高度：<input type="text" name="height" class="small"> px</span></p>
+									</div>
+								</div>
+								<div class="style-item">
+									<span class="item-title">输出文件格式：</span>
+									<span class="item-option">
+										<select name="format" class="small">
+											<option value="">自动</option>
+											<option value="JPG">JPG</option>
+											<option value="PNG">PNG</option>
+										</select>
+									</span>
+								</div>
+								<div class="style-item">
+									<span class="item-title">旋转角度：</span>
+									<span class="item-option">
+										<input class="small" type="text" name="rotate">
+									</span>
+									<span class="item-option">
+										<input name="auto_orient" type="checkbox">
+									</span>
+									<span class="item-title">自动旋转图片</span>
+								</div>
+								<div class="style-item">
+									<p class="item-title">图片质量：</p>
+									<div id="quality-block" class="item-option quality-block">
+										<p class="align_center"><span op="min" class="left link">最低质量</span><span class="link" op="mid">均衡</span><span class="right link" op="max">质量最优</span></p>
+										<input name="quality" type="hidden" value="50">
+										<div id="quality" class="slider quality">
+											<div class="chosen"></div>
+							            </div>
+									</div>
+								</div>
+							</li>
+							<li class="detail">
+								<div class="style-item watermark-item">
+									<span class="item-title">水印格式：</span>
+									<span class="item-option">
+										<div id="watermark-style-value" class="hidden">
+											<input type="radio" name="watermark_style" value='1' checked="true">
+											<input type="radio" name="watermark_style" value='2'>
+											<input type="radio" name="watermark_style" value='3'>
+										</div>
+										<div id="watermark-style-setter" class="watermark-styles">
+											<div class="watermark-style active" value='1' >
+												不显示水印
+											</div>
+											<div class="watermark-style" value='2' >
+												文本
+											</div>
+											<div class="watermark-style" value='3' >
+												图片
+											</div>
+										</div>
+									</span>
+								</div>
+
+								<div class="half-part">
+									<div class="style-item url-item">
+										<p class="item-title">选取图片：</p>
+										<div class="item-option">
+											<p><input type="text" name="url" class="small"></p>
+										</div>
+									</div>
+									<div class="style-item margin-item">
+										<p class="item-title">显示边距：</p>
+										<div class="item-option">
+											<p><span>横向： <input type="text" name="transverse_margin" class="small"> px</span></p>
+											<p><span>纵向： <input type="text" name="longitudinal_margin" class="small"> px</span></p>
+										</div>
+									</div>
+								</div>
+								<div class="half-part">
+									<div class="style-item position-item">
+										<p class="item-title">显示位置：</p>
+										<div class="item-option">
+											<div id="watermark-position-value" class="hidden">
+												<input type="radio" name="watermark_position" value='1' checked="true">
+												<input type="radio" name="watermark_position" value='2'>
+												<input type="radio" name="watermark_position" value='3'>
+												<input type="radio" name="watermark_position" value='4'>
+												<input type="radio" name="watermark_position" value='5'>
+												<input type="radio" name="watermark_position" value='6'>
+												<input type="radio" name="watermark_position" value='7'>
+												<input type="radio" name="watermark_position" value='8'>
+												<input type="radio" name="watermark_position" value='9'>
+											</div>
+											<ul id="watermark-position-setter" class="watermark-position-setter">
+												<li value="1" class="watermark-position">左上</li>
+												<li value="2" class="watermark-position">中上</li>
+												<li value="3" class="watermark-position">右上</li>
+												<li value="4" class="watermark-position">左中</li>
+												<li value="5" class="watermark-position">中部</li>
+												<li value="6" class="watermark-position">右中</li>
+												<li value="7" class="watermark-position">左下</li>
+												<li value="8" class="watermark-position">中下</li>
+												<li value="9" class="watermark-position active">右下</li>
+											</ul>
+										</div>
+									</div>
+								</div>
+								<div class="style-item transparent-item">
+									<p class="item-title">透明度：</p>
+									<div class="item-option transparent-block">
+										<p class="align_center"><span class="left">不透明</span><span><input class="small" type="text" name="transparent" value="50"> %</span><span class="right">透明</span></p>
+										<div id="transparent" class="slider transparent">
+							            </div>
+									</div>
+								</div>
+							</li>
+						</ul>
+						<div class="preview">
+							<a class="pic-box" href="http://portal-files.qiniudn.com/sample1.jpg" target="_blank" title="点击查看正确尺寸缩略图">
+								<img id="preview" class="preview-pic" src="http://portal-files.qiniudn.com/sample1.jpg"></img>
+							</a>
+							<p class="tip">此处预览图尺寸受限，可能与原尺寸不同，点击图片可查看原尺寸预览图</p>
+							<button id="generate-prev" class="green-btn">生成预览</button>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<div class="box-foot">
+				<a href="http://docs.qiniutek.com/v3/api/foimg/" target="_blank" class="side-link"><i class="icon-what"></i>API文档</a>
+				<button id="create-style" class="btn submit">确认创建</button>
+				<button class="cancel link">放弃并返回</button>
+			</div>
+		</div>
+	</div>
+</div>
+{{template "footer_main" .}}

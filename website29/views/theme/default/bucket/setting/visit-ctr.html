@@ -1,0 +1,123 @@
+{{template "header_main" .}}
+<div class="main bucket-setting-visit-ctr">
+	{{template "bucket_setting_head" .}}
+		<div class="cnt-box">
+			<div class="cnt-box-head">
+				此空间当前为公开，空间内容可匿名访问。
+				<a class="link">公开/私有的区别？</a>
+				<div id="bucket-limit-value" class="hidden">
+					<input type="radio" name="bucket_limit" value='public'>
+					<input type="radio" name="bucket_limit" value='private' data-bind="checked: $data.certainBucket().private()">
+				</div>
+				<div id="bucket-limit-setter" class="bucket-limits">
+					<div class="bucket-limit" value='public' data-bind="css: {'active':!$data.certainBucket().private()}">
+						公开
+					</div>
+					<div class="bucket-limit" value='private' data-bind="css: {'active':$data.certainBucket().private()}">
+						私有
+					</div>
+				</div>
+			</div>
+			<div class="cnt-box-body">
+				<div class="modes-line">
+					防盗链模式：
+					<div id="protect-mode-value" class="hidden">
+						<input type="radio" name="protect_mode" value='1' data-bind="checked: $data.certainBucket().visit_ctr()==0">
+						<input type="radio" name="protect_mode" value='2' data-bind="checked: $data.certainBucket().visit_ctr()==1">
+						<input type="radio" name="protect_mode" value='3' data-bind="checked: $data.certainBucket().visit_ctr()==2">
+					</div>
+					<div id="protect-mode-setter" class="protect-modes">
+						<div class="protect-mode" value='1' data-bind="css: {'active':$data.certainBucket().visit_ctr()==0}">
+							不限制
+						</div>
+						<div class="protect-mode" value='2' data-bind="css: {'active':$data.certainBucket().visit_ctr()==1}">
+							白名单
+						</div>
+						<div class="protect-mode" value='3' data-bind="css: {'active':$data.certainBucket().visit_ctr()==2}">
+							黑名单
+						</div>
+					</div>
+					<a class="link">如何使用防盗链？</a>
+				</div>
+				<ul id="mode-lists" class="lists">
+					<li class="list"></li>
+					<li class="list">
+						<p class="current-setting">
+							<span class="setting-name">当前白名单:</span>
+							<!-- ko ifnot: certainWlist().length -->
+							<span class="current-setting-cnt none">
+								无
+							</span>
+							<!-- /ko -->
+							<!-- ko foreach: certainWlist -->
+							<span class="current-setting-cnt deletable">
+								<span class="status" data-bind="text: getStatus($data.status)"></span>
+								<span data-bind="text: $data.domain, attr:{title: $data.domain, id:$data._id}"></span>
+								<span class="icon-delete domain-delete">x</span>
+							</span>
+							<!-- /ko -->
+						</p>
+						<a id="add-wlist" class="btn add-btn">添加条目</a>
+					</li>
+					<li class="list">
+						<p class="current-setting">
+							<span class="setting-name">当前黑名单:</span>
+							<!-- ko ifnot: certainBlist().length -->
+							<span class="current-setting-cnt none">
+								无
+							</span>
+							<!-- /ko -->
+							<!-- ko foreach: certainBlist -->
+							<span class="current-setting-cnt deletable">
+								<span class="status" data-bind="text: getStatus($data.status)"></span>
+								<span data-bind="text: $data.domain, attr:{title: $data.domain, id:$data._id}"></span>
+								<span class="icon-delete domain-delete">x</span>
+							</span>
+							<!-- /ko -->
+						</p>
+						<a id="add-blist" class="btn add-btn">添加条目</a>
+					</li>
+				</ul>
+			</div>
+		</div>
+	{{template "bucket_setting_foot" .}}
+	<div id="add-list-curtain" class="curtain">
+		<div class="suspended-box">
+			<div class="box-head">
+				<h2 class="title">添加条目</h2>
+				<a href="#"><i class="icon-close close-box"></i></a>
+			</div>
+
+			<div class="box-body">
+				<div class="box-body-cnt">
+					<p class="op-guide">请输入新的规则条目：</p>
+					<div class="ops-block">
+						<p class="op_in">
+							<input class="long" name="domain" type="text" placeholder="">
+							<i class="icon-ok name-ok"></i>
+						</p>
+						<p id="domain-error" class="error"></p>
+					</div>
+					{{/*}}
+					<div class="attention">
+						<p>注意事项：</p>
+						<p>1.申请绑定的域名必须已经备案，否则无法通过审核。</p>
+						<p>2.建议绑定一个子域名而不是顶级域名，即建议为img1.qiniu.com而非qiniu.com。</p>
+						<p>3.审批和设置需要约七个工作日，请耐心等待。完成后您将受到一封邮件通知。</p>
+						<p>4.绑定完成后，需要在该域名的DNS服务器上设置CNAME为c.qiniudn.com。</p>
+					</div>
+					<p class="agreement">
+						<input id="custom-agree" type="checkbox" name="agree">
+						<label for="custom-agree">我已经仔细阅读以上注意事项</label>
+					</p>
+					{{*/}}
+				</div>
+			</div>
+			<div class="box-foot">
+				<button id="add-submit" class="btn submit" disabled="disabled">添加</button>
+				<button class="link cancel">放弃并返回</button>
+			</div>
+		</div>
+	</div>
+</div>
+{{template "footer_main" .}}

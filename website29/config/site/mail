@@ -1,0 +1,9 @@
+"MailSender": "hi@qiniutek.com",
+"Address": "smtp.qiniutek.com",
+"Port": 25,
+"Domain": "smtp.qiniutek.com",
+"UserName": "noreply@qiniutek.com",
+"UserNameText" : "七牛云存储",
+"ReplyUser": "support@qiniutek.com",
+"Authentication": "plain",
+"EnableStarttlsAuto": false

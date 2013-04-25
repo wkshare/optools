@@ -1,0 +1,125 @@
+{{template "header_main" .}}
+<script>
+var _package_id, _package_type;
+try{
+{{with .POST.Get "package"}}
+	_package_id = "{{.}}";
+{{end}}
+{{with .POST.Get "package_type"}}
+	_package_type = "{{.}}";
+{{end}}
+}catch(err){
+	console.log("POST value error.");
+}
+</script>
+<div class="main financial-pay">
+	<div class="center-content">
+		<form method="POST" action="">
+		<div class="box">
+			<!-- ko with: currentPackage -->
+			<h4 class="box-head">
+				<span class="head-item-name">当前套餐：</span>
+				<span class="head-item-cnt">
+					<i class="icon-medal silver"></i><span class="package-name" data-bind="text: $data.id"></span>(<span class="package-summary"></span>)
+				</span>
+				<span class="head-item-name">套餐有效期：</span>
+				<span class="head-item-cnt">
+					<span class="package-valid"><span class="start">2013.04.19</span>-<span class="end">2013.04.23</span></span>
+				</span>
+			</h4>
+			<div class="box-body">
+				<p class="ttl">订单确认：</p>
+				<table class="package-table" cellpadding="0" cellspacing="0">
+					<tbody>
+						<tr>
+							<td class="item-name">套餐名称</td>
+							<td class="package-name"><i class="icon-medal silver"></i><span class="package-name" data-bind="text: $data.id">套餐</span>(<span class="package-summary"></span>)</td>
+							<td class="item-name">单价</td>
+							<td><span class="RMB">￥</span><span class="price-num" data-bind="text: $data.money"></span>元/月</td>
+						</tr>
+						<tr>
+							<td class="item-name">有效时间</td>
+							<td colspan="3"><span class="start">2013.04.19</span>-<span class="end">2013.04.23</span></td>
+						</tr>
+						<tr>
+							<td class="item-name">购买数量</td>
+							<td colspan="3" class="valids-block">
+								<ul class="valids">
+									<li>
+										<input id="valid-ch1" type="radio" name="valid" value="1" checked="checked">
+										<label for="valid-ch1">3个月</label>
+									</li>
+									<li>
+										<input id="valid-ch2" type="radio" name="valid" value="2">
+										<label for="valid-ch2">
+											6个月
+											<span class="add-info">现在购买立减|<span class="small">原价1194，现价1000</span></span>
+										</label>
+									</li>
+									<li>
+										<input id="valid-ch3" type="radio" name="valid" value="3">
+										<label for="valid-ch3">9个月</label>
+									</li>
+									<li>
+										<input id="valid-ch4" type="radio" name="valid" value="4">
+										<label for="valid-ch4">12个月</label>
+									</li>
+									<li>
+										<input id="valid-ch5" type="radio" name="valid" value="5">
+										<label for="valid-ch5">24个月</label>
+									</li>
+								</ul>
+							</td>
+						</tr>
+						<tr>
+							<td class="item-name">总计（元）</td>
+							<td colspan="3" class="total">
+								<span class="RMB">￥</span><span class="price-num">1000</span>元/月
+								<span class="favor">（已优惠<span class="favor-num">100</span>元）</span>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+				<p class="ttl">支付方式：</p>
+				<p class="line">
+					<input id="use_balance" type="checkbox" name="use_balance" class="line-head">
+					<label for="use_balance">
+						使用账户余额支付。账户可用余额：￥<span class="balance-num">700</span>元
+					</label>
+				</p>
+				<p id="remain-num-line" class="add-line hidden">
+					请使用其他方式支付剩余金额：￥<span class="remain-num">300</span>元
+				</p>
+				<div class="pay-block">
+					<ul class="pay-choices">
+						<span class="pay-choice">在线支付</span>
+						<span class="pay-choice">银行转账</span>
+					</ul>
+					<ul class="pay-tabs">
+						<li class="pay-tab">
+							<ul class="recharge-modes">
+								{{range $k,$v :=.Body.payment}}
+								<li class="recharge-mode">
+									<input id="payment_type_{{$k}}" type="radio" value="{{$k}}" name="paymentType">
+									<label for="payment_type_{{$k}}">
+										<img src="/static/theme/default/image/financial/recharge/{{$k}}.png" title="{{$v}}" alt="{{$v}}" class="recharge-mode-pic">
+									</label>
+								</li>
+								{{end}}
+							</ul>
+						</li>
+						<li class="pay-tab">银行转账...</li>
+					</ul>
+				</div>
+				<p class="align_right foot-ops">
+					<button type="submit" class="yellow-btn">确认支付</button>
+					<a href="/financial/package" class="sp-btn">取消返回</a>
+				</p>
+			</div>
+			<!-- /ko -->
+		</div>
+		</form>
+	</div>
+</div>
+<script type="text/javascript" language="javascript" src="/static/theme/default/js/financial/global.js"></script>
+{{template "footer_main" .}}
