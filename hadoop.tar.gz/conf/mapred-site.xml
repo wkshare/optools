@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<?xml-stylesheet type="text/xsl" href="configuration.xsl"?>
+
+<!-- Put site-specific property overrides in this file. -->
+
+<configuration>
+	<property>
+		<name>mapred.job.tracker</name>
+		<value>192.168.1.145:5002</value>
+	</property>
+	<property>
+		<name>mapred.job.tracker.http.address</name>
+		<value>192.168.1.145:50030</value>
+	</property>
+	<property>
+		<name>mapred.task.tracker.http.address</name>
+		<value>192.168.1.145:50060</value>
+	</property>
+	<property>
+		<name>mapred.local.dir</name>
+		<value>/disk3/hadoop/local/,/disk4/hadoop/local/,/disk5/hadoop/local/,/disk6/hadoop/local/</value>
+	</property>
+</configuration>
