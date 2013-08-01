@@ -14,8 +14,9 @@ function configure_env() {
     useradd -s /bin/bash -m qboxserver
     chmod a+rx /home/qboxserver
     useradd -s /bin/jenkins_deploy.sh -m build
-    mkdir -p "/home/build/{builds, packages}"
+    mkdir -p /home/build/{builds, packages}
     chown build.build -R /home/build/
+    chmod a+rx -R /home/build/
     apt-get install git
     apt-get install gcc make -y
     apt-get install python-setuptools -y
@@ -126,7 +127,6 @@ function clean_stepping_stone() {
     rm -rf $TOOLS_DIR
     echo 'restore env configure'
     sed -i 's/^UMASK.*/UMASK 022/g' '/etc/login.defs'
-    userdel -r build
 }
 
 function main() {
