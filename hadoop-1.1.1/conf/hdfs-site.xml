@@ -1,0 +1,39 @@
+<?xml version="1.0"?>
+<?xml-stylesheet type="text/xsl" href="configuration.xsl"?>
+
+<!-- Put site-specific property overrides in this file. -->
+
+<configuration>
+
+	<property>
+		<name>dfs.http.address</name>
+		<value>192.168.1.145:50070</value>
+	</property>
+
+	<property>
+		<name>dfs.name.dir</name>
+		<value>/disk1/hadoop/namenode/master/,/disk2/hadoop/namenode/slave/</value>
+	</property>
+
+	<property>
+		<name>dfs.data.dir</name>
+		<value>/disk3/hadoop/data/,/disk4/hadoop/data/,/disk5/hadoop/data/,/disk6/hadoop/data/</value>
+	</property>
+
+	<property>
+		<name>dfs.permissions</name>
+		<value>false</value>
+	</property>
+
+	<property>
+		<name>dfs.replication</name>
+		<value>1</value>
+	</property>
+
+	<property>
+		<name>dfs.balance.bandwidthPerSec</name>
+		<value>52428800</value>
+	</property>
+
+</configuration>
+
