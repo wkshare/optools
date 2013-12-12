@@ -13,6 +13,11 @@ Various software packages.
 - webhook-ver1.0.tar.gz
 - webhook-ver1.1.tar.gz
 
+## Nginx compile args
+```bash
+./configure --prefix=/opt/nginx --with-http_ssl_module --with-http_gzip_static_module --with-http_realip_module --with-cc-opt=-Wno-error --with-http_gzip_static_module --with-http_stub_status_module --with-http_mp4_module --with-http_flv_module --with-pcre=../pcre-8.33 --with-zlib=../zlib-1.2.8 --with-openssl=../openssl-1.0.1e
+```
+
 ## How to compress software packages
 
 ```bash
