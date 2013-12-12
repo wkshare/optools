@@ -5,13 +5,13 @@ if [ $0 != "./start.sh" ]; then
    exit 1
 fi
 
-if [ ! -f ./mongo.conf ]
+if [ ! -f ./mongodb.conf ]
 then
-  echo 'config file mongo.conf not exists,exit!'
+  echo 'config file mongodb.conf not exists,exit!'
   exit 2
 fi
 
-args=`cat ./mongo.conf | grep -v '^#' | tr '\n' ' '`
+args=`cat ./mongodb.conf | grep -v '^#' | tr '\n' ' '`
 echo load config file... args are $args
 echo -n 'starting mongo '
 ./bin/mongod $args
