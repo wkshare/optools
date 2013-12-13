@@ -21,5 +21,5 @@ Various software packages.
 ## How to compress software packages
 
 ```bash
-tar -cvzf <package>.tar.gz <package>
+tar -cvzf <package>.tar.gz -C <package> .
 ```
