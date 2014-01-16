@@ -43,7 +43,8 @@ hostname -F /etc/hostname
 echo "--- /etc/hostname completed."
 
 #/etc/hosts
-sed -i "1i\127.0.1.1 $hostname" /etc/hosts
+sed -i "/127.0./d" /etc/hosts
+sed -i "1i\127.0.0.1 localhost $hostname" /etc/hosts
 
 sed -i "/zabbixserver/d" /etc/hosts
 echo "$zabbixserver_ip zabbixserver" >> /etc/hosts
