@@ -57,7 +57,11 @@ echo "--- /etc/hosts completed."
 
 #/etc/localtime
 cp /usr/share/zoneinfo/Asia/Shanghai /etc/localtime
-echo "--- /etc/localtime completed"
+echo "--- /etc/localtime completed."
+
+#/etc/timezone
+echo "Asia/Shanghai" > /etc/timezone
+echo "--- /etc/timezone completed."
 
 #/etc/init/control-alt-delete.conf
 sed -i 's/^exec shutdown/#exec shutdown/g' /etc/init/control-alt-delete.conf
@@ -69,6 +73,7 @@ TMOUT=900
 readonly TMOUT
 export TMOUT
 EOF
+echo "--- /etc/profile.d/tmout.sh completed."
 
 #/etc/profile.d/language.sh
 cat > /etc/profile.d/language.sh << EOF
@@ -76,6 +81,7 @@ LC_ALL='C'
 readonly LC_ALL
 export LC_ALL
 EOF
+echo "--- /etc/profile.d/language.sh completed."
 
 #/etc/sysctl.conf
 cat > /etc/sysctl.conf << EOF
@@ -105,6 +111,7 @@ net.ipv4.tcp_keepalive_time = 600
 net.ipv4.tcp_timestamps = 0
 
 EOF
+echo "--- /etc/sysctl.conf completed."
 
 #/etc/security/limits.conf
 cat > /etc/security/limits.conf << EOF
@@ -113,17 +120,20 @@ root soft nofile 65535
 qboxserver hard nofile 65535
 qboxserver soft nofile 65535
 EOF
+echo "--- /etc/security/limits.conf completed."
 
 #/etc/sudoers
 sed -i "/.*zabbix.*/d" /etc/sudoers; echo "zabbix ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers; grep -n zabbix /etc/sudoers
+echo "--- /etc/sudoers completed."
 
 #salt-minion
 echo deb http://ppa.launchpad.net/saltstack/salt/ubuntu `lsb_release -sc` main | sudo tee /etc/apt/sources.list.d/saltstack.list
 wget -q -O- "http://keyserver.ubuntu.com:11371/pks/lookup?op=get&search=0x4759FA960E27C0A6" | sudo apt-key add -
 sudo apt-get update
 sudo apt-get install salt-minion
+echo "--- installe salt-minion completed."
 
-#/etc/ssh/sshd_config
+#/etc/ssh/sshd_config #Pending
 #sed -i "/.*PasswordAuthentication.*/d" /etc/ssh/sshd_config
 #echo "PasswordAuthentication no" >> /etc/ssh/sshd_config
 #/etc/init.d/ssh reload
